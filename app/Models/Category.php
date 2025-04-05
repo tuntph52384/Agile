@@ -48,4 +48,13 @@ class Category extends Model
 
         return $result > 0;
     }
+    public function all()
+    {
+        $queryBuilder = $this->connection->createQueryBuilder();
+        $queryBuilder
+            ->select('*')
+            ->from($this->tableName);
+
+        return $queryBuilder->fetchAllAssociative();
+    }
 }

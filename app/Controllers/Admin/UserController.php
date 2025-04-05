@@ -111,7 +111,7 @@ class UserController extends Controller
         $user = $this->user->find($id);
 
         if (empty($user)) {
-            redierct404();
+            redirect404();
         }
 
         $title = 'Chi tiết người dùng';
@@ -123,7 +123,7 @@ class UserController extends Controller
     {
         $user = $this->user->find($id);
         if (empty($user)) {
-            redierct404();
+            redirect404();
         }
 
         $title = 'Cập nhật người dùng';
@@ -136,7 +136,7 @@ class UserController extends Controller
         $user = $this->user->find($id);
 
         if (empty($user)) {
-            redierct404();
+            redirect404();
         }
 
         try {
@@ -214,7 +214,7 @@ class UserController extends Controller
         $user = $this->user->find($id);
 
         if (empty($user)) {
-            redierct404();
+            redirect404();
         }
 
         $this->user->delete($id);

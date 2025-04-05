@@ -1,0 +1,45 @@
+05-04-2025 09:23:35 - PDOException: SQLSTATE[HY000]: General error: 1366 Incorrect integer value: 'Chọn danh mục' for column 'category_id' at row 1 in D:\laragon\www\Agile\vendor\doctrine\dbal\src\Driver\PDO\Statement.php:55
+Stack trace:
+#0 D:\laragon\www\Agile\vendor\doctrine\dbal\src\Driver\PDO\Statement.php(55): PDOStatement->execute()
+#1 D:\laragon\www\Agile\vendor\doctrine\dbal\src\Connection.php(882): Doctrine\DBAL\Driver\PDO\Statement->execute()
+#2 D:\laragon\www\Agile\vendor\doctrine\dbal\src\Connection.php(518): Doctrine\DBAL\Connection->executeStatement('INSERT INTO pro...', Array, Array)
+#3 D:\laragon\www\Agile\app\Model.php(87): Doctrine\DBAL\Connection->insert('products', Array)
+#4 D:\laragon\www\Agile\app\Controllers\Admin\ProductController.php(88): App\Model->insert(Array)
+#5 [internal function]: App\Controllers\Admin\ProductController->store()
+#6 D:\laragon\www\Agile\vendor\bramus\router\src\Bramus\Router\Router.php(482): call_user_func_array(Array, Array)
+#7 D:\laragon\www\Agile\vendor\bramus\router\src\Bramus\Router\Router.php(440): Bramus\Router\Router->invoke('App\\Controllers...', Array)
+#8 D:\laragon\www\Agile\vendor\bramus\router\src\Bramus\Router\Router.php(287): Bramus\Router\Router->handle(Array, true)
+#9 D:\laragon\www\Agile\routers\index.php(14): Bramus\Router\Router->run()
+#10 D:\laragon\www\Agile\index.php(9): require('D:\\laragon\\www\\...')
+#11 {main}
+
+Next Doctrine\DBAL\Driver\PDO\Exception: SQLSTATE[HY000]: General error: 1366 Incorrect integer value: 'Chọn danh mục' for column 'category_id' at row 1 in D:\laragon\www\Agile\vendor\doctrine\dbal\src\Driver\PDO\Exception.php:24
+Stack trace:
+#0 D:\laragon\www\Agile\vendor\doctrine\dbal\src\Driver\PDO\Statement.php(57): Doctrine\DBAL\Driver\PDO\Exception::new(Object(PDOException))
+#1 D:\laragon\www\Agile\vendor\doctrine\dbal\src\Connection.php(882): Doctrine\DBAL\Driver\PDO\Statement->execute()
+#2 D:\laragon\www\Agile\vendor\doctrine\dbal\src\Connection.php(518): Doctrine\DBAL\Connection->executeStatement('INSERT INTO pro...', Array, Array)
+#3 D:\laragon\www\Agile\app\Model.php(87): Doctrine\DBAL\Connection->insert('products', Array)
+#4 D:\laragon\www\Agile\app\Controllers\Admin\ProductController.php(88): App\Model->insert(Array)
+#5 [internal function]: App\Controllers\Admin\ProductController->store()
+#6 D:\laragon\www\Agile\vendor\bramus\router\src\Bramus\Router\Router.php(482): call_user_func_array(Array, Array)
+#7 D:\laragon\www\Agile\vendor\bramus\router\src\Bramus\Router\Router.php(440): Bramus\Router\Router->invoke('App\\Controllers...', Array)
+#8 D:\laragon\www\Agile\vendor\bramus\router\src\Bramus\Router\Router.php(287): Bramus\Router\Router->handle(Array, true)
+#9 D:\laragon\www\Agile\routers\index.php(14): Bramus\Router\Router->run()
+#10 D:\laragon\www\Agile\index.php(9): require('D:\\laragon\\www\\...')
+#11 {main}
+
+Next Doctrine\DBAL\Exception\DriverException: An exception occurred while executing a query: SQLSTATE[HY000]: General error: 1366 Incorrect integer value: 'Chọn danh mục' for column 'category_id' at row 1 in D:\laragon\www\Agile\vendor\doctrine\dbal\src\Driver\API\MySQL\ExceptionConverter.php:91
+Stack trace:
+#0 D:\laragon\www\Agile\vendor\doctrine\dbal\src\Connection.php(1414): Doctrine\DBAL\Driver\API\MySQL\ExceptionConverter->convert(Object(Doctrine\DBAL\Driver\PDO\Exception), Object(Doctrine\DBAL\Query))
+#1 D:\laragon\www\Agile\vendor\doctrine\dbal\src\Connection.php(1356): Doctrine\DBAL\Connection->handleDriverException(Object(Doctrine\DBAL\Driver\PDO\Exception), Object(Doctrine\DBAL\Query))
+#2 D:\laragon\www\Agile\vendor\doctrine\dbal\src\Connection.php(888): Doctrine\DBAL\Connection->convertExceptionDuringQuery(Object(Doctrine\DBAL\Driver\PDO\Exception), 'INSERT INTO pro...', Array, Array)
+#3 D:\laragon\www\Agile\vendor\doctrine\dbal\src\Connection.php(518): Doctrine\DBAL\Connection->executeStatement('INSERT INTO pro...', Array, Array)
+#4 D:\laragon\www\Agile\app\Model.php(87): Doctrine\DBAL\Connection->insert('products', Array)
+#5 D:\laragon\www\Agile\app\Controllers\Admin\ProductController.php(88): App\Model->insert(Array)
+#6 [internal function]: App\Controllers\Admin\ProductController->store()
+#7 D:\laragon\www\Agile\vendor\bramus\router\src\Bramus\Router\Router.php(482): call_user_func_array(Array, Array)
+#8 D:\laragon\www\Agile\vendor\bramus\router\src\Bramus\Router\Router.php(440): Bramus\Router\Router->invoke('App\\Controllers...', Array)
+#9 D:\laragon\www\Agile\vendor\bramus\router\src\Bramus\Router\Router.php(287): Bramus\Router\Router->handle(Array, true)
+#10 D:\laragon\www\Agile\routers\index.php(14): Bramus\Router\Router->run()
+#11 D:\laragon\www\Agile\index.php(9): require('D:\\laragon\\www\\...')
+#12 {main}

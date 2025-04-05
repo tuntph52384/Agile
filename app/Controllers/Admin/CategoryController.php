@@ -11,7 +11,13 @@ class CategoryController extends Controller
 {
     private Category $category;
 
-    public function __construct()
+/*************  ✨ Windsurf Command ⭐  *************/
+    /**
+     * Constructor
+     *
+     * @return void
+     */
+/*******  35e16272-8648-4e63-879b-b282c0196c96  *******/    public function __construct()
     {
         $this->category = new Category();
     }
@@ -107,7 +113,7 @@ class CategoryController extends Controller
         $category = $this->category->find($id);
 
         if (empty($category)) {
-            redierct404();
+            redirect404();
         }
 
         $title = 'Chi tiết danh mục';
@@ -119,7 +125,7 @@ class CategoryController extends Controller
     {
         $category = $this->category->find($id);
         if (empty($category)) {
-            redierct404();
+            redirect404();
         }
 
         $title = 'Cập nhật danh mục';
@@ -132,7 +138,7 @@ class CategoryController extends Controller
         $category = $this->category->find($id);
 
         if (empty($category)) {
-            redierct404();
+            redirect404();
         }
 
         try {
@@ -211,7 +217,7 @@ class CategoryController extends Controller
         $category = $this->category->find($id);
 
         if (empty($category)) {
-            redierct404();
+            redirect404();
         }
 
         $this->category->delete($id);

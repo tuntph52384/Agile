@@ -7,6 +7,16 @@ use App\Model;
 class Product extends Model
 {
     protected $tableName = 'products';
+    public function getConnection()
+    {
+        return $this->connection;  // Kết nối này được thiết lập trong lớp Model cha
+    }
+    public function getTableName()
+    {
+        return $this->tableName;
+    }
+
+
 
     public function paginate($page = 1, $limit = 10)
     {
@@ -71,4 +81,31 @@ class Product extends Model
 
         return $queryBuilder->fetchAssociative();
     }
+
+    public function searchByName($keyword)
+    {
+        $queryBuilder = $this->connection->createQueryBuilder();
+        $queryBuilder
+            ->select(
+                'p.id                       p_id',
+                'p.name                     p_name',
+                'c.name                     c_name',
+                'p.img_thumbnail            p_img_thumbnail',
+                'p.price                    p_price',
+                'p.price_sale               p_price_sale',
+                'p.is_sale                  p_is_sale',
+                'p.is_active                p_is_active',
+                'p.is_show_home             p_is_show_home',
+                'p.created_at               p_created_at',
+                'p.updated_at               p_updated_at'
+            )
+            ->from($this->tableName, 'p')
+            ->innerJoin('p', 'categories', 'c', 'c.id = p.category_id')
+            ->where('p.name LIKE :keyword')
+            ->setParameter('keyword', "%$keyword%")
+            ->orderBy('p.id', 'DESC');
+
+        return $queryBuilder->fetchAllAssociative();
+    }
+    
 }

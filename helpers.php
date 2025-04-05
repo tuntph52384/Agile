@@ -31,7 +31,7 @@ if (!function_exists('redirect')) {
 
 if (!function_exists('redierct404')) {
 
-    function redierct404()
+    function redirect404()
     {
         header('HTTP/1.1 404 Not Found');
         exit;

@@ -97,7 +97,7 @@ class BannerController extends Controller
         $banner = $this->banner->find($id);
 
         if (empty($banner)) {
-            redierct404();
+            redirect404();
         }
 
         $title = 'Chi tiết banner';
@@ -109,7 +109,7 @@ class BannerController extends Controller
     {
         $banner = $this->banner->find($id);
         if (empty($banner)) {
-            redierct404();
+            redirect404();
         }
 
         $title = 'Cập nhật banner';
@@ -122,7 +122,7 @@ class BannerController extends Controller
         $banner = $this->banner->find($id);
 
         if (empty($banner)) {
-            redierct404();
+            redirect404();
         }
 
         try {
@@ -191,7 +191,7 @@ class BannerController extends Controller
         $banner = $this->banner->find($id);
 
         if (empty($banner)) {
-            redierct404();
+            redirect404();
         }
 
         $this->banner->delete($id);

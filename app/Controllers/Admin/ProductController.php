@@ -107,7 +107,7 @@ class ProductController extends Controller
         $product = $this->product->find($id);
 
         if (empty($product)) {
-            redierct404();
+            redirect404();
         }
 
         $title = 'Chi tiết Product';
@@ -120,7 +120,7 @@ class ProductController extends Controller
         $product = $this->product->find($id);
 
         if (empty($product)) {
-            redierct404();
+            redirect404();
         }
 
         $title = 'Cập nhật Product';
@@ -135,7 +135,7 @@ class ProductController extends Controller
         $product = $this->product->find($id);
 
         if (empty($product)) {
-            redierct404();
+            redirect404();
         }
 
         try {
@@ -208,7 +208,7 @@ class ProductController extends Controller
         $product = $this->product->find($id);
 
         if (empty($product)) {
-            redierct404();
+            redirect404();
         }
 
         $this->product->delete($id);
@@ -222,4 +222,4 @@ class ProductController extends Controller
 
         redirect('/admin/products');
     }
-}
+}   
