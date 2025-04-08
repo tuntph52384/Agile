@@ -8,13 +8,12 @@ class Color extends Model
 {
     protected $tableName = 'colors';
 
-    public function getAllColors()
+    public function findAll()
     {
         $queryBuilder = $this->connection->createQueryBuilder();
-        $queryBuilder
+        return $queryBuilder
             ->select('*')
-            ->from($this->tableName);
-        
-        return $queryBuilder->fetchAllAssociative();
+            ->from($this->tableName)
+            ->fetchAllAssociative();
     }
 }

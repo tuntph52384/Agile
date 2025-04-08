@@ -57,4 +57,14 @@ class Category extends Model
 
         return $queryBuilder->fetchAllAssociative();
     }
+    public function findAll()
+    {
+        $queryBuilder = $this->connection->createQueryBuilder();
+
+        $queryBuilder
+            ->select('*')
+            ->from($this->tableName);
+
+        return $queryBuilder->fetchAllAssociative();
+    }
 }

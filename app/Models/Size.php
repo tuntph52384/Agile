@@ -8,13 +8,12 @@ class Size extends Model
 {
     protected $tableName = 'sizes';
 
-    public function getAllSizes()
+    public function findAll()
     {
         $queryBuilder = $this->connection->createQueryBuilder();
-        $queryBuilder
+        return $queryBuilder
             ->select('*')
-            ->from($this->tableName);
-        
-        return $queryBuilder->fetchAllAssociative();
+            ->from($this->tableName)
+            ->fetchAllAssociative();
     }
 }

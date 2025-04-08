@@ -38,6 +38,33 @@
                         <p class="text-dark">{{ $product['p_overview'] }}</p>
                     </div>
 
+                    {{-- Danh sách biến thể --}}
+                    @if (!empty($variants))
+                        <div class="mb-4">
+                            <h5 class="text-secondary">Các biến thể:</h5>
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Màu</th>
+                                        <th>Size</th>
+                                        <th>Tồn kho</th>
+                                        <th>Giá</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($variants as $v)
+                                        <tr>
+                                            <td>{{ $v['color_name'] }}</td>
+                                            <td>{{ $v['size_name'] }}</td>
+                                            <td>{{ $v['stock'] }}</td>
+                                            <td>{{ number_format($v['price'], 0, ',', '.') }} ₫</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @endif
+
                     <div class="d-flex gap-3">
                         <input class="form-control text-center border" type="number" value="1" min="1" style="max-width: 4rem">
                         <button class="btn btn-primary">

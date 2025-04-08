@@ -7,6 +7,7 @@ use App\Model;
 class Product extends Model
 {
     protected $tableName = 'products';
+
     public function getConnection()
     {
         return $this->connection;  // Kết nối này được thiết lập trong lớp Model cha
@@ -107,5 +108,46 @@ class Product extends Model
 
         return $queryBuilder->fetchAllAssociative();
     }
-    
+    public function searchAdvanced($keyword = '', $size = '', $color = '', $category = '')
+    {
+        $db = $this->getConnection();
+        $qb = $db->createQueryBuilder();
+
+        $qb->select('p.*')
+            ->from('products', 'p')
+            ->where('p.is_active = 1'); // Chỉ lấy sản phẩm đang hoạt động
+
+        // Nếu có lọc size hoặc màu thì mới join bảng biến thể
+        if (!empty($size) || !empty($color)) {
+            $qb->leftJoin('p', 'product_variants', 'pv', 'p.id = pv.product_id');
+        }
+
+        // Lọc theo từ khóa tên sản phẩm
+        if (!empty($keyword)) {
+            $qb->andWhere('p.name LIKE :keyword')
+                ->setParameter('keyword', '%' . $keyword . '%');
+        }
+
+        // Lọc theo size
+        if (!empty($size)) {
+            $qb->andWhere('pv.size_id = :size')
+                ->setParameter('size', $size);
+        }
+
+        // Lọc theo màu
+        if (!empty($color)) {
+            $qb->andWhere('pv.color_id = :color')
+                ->setParameter('color', $color);
+        }
+        if(!empty($category)){
+            $qb->andWhere('p.category_id = :category')
+                ->setParameter('category', $category);
+        }
+
+        // Tránh trùng sản phẩm khi có nhiều biến thể
+        $qb->groupBy('p.id')
+            ->orderBy('p.id', 'DESC');
+
+        return $qb->fetchAllAssociative();
+    }
 }
