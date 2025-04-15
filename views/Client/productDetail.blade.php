@@ -6,15 +6,14 @@
             <div class="row g-4 align-items-center">
                 <!-- Product Image -->
                 <div class="col-md-6 text-center">
-                    <img class="img-fluid rounded shadow-sm border" 
-                        src="{{ file_url($product['p_img_thumbnail']) }}" 
+                    <img class="img-fluid rounded shadow-sm border" src="{{ file_url($product['p_img_thumbnail']) }}"
                         alt="Product Image" style="max-width: 100%; height: auto;">
                 </div>
 
                 <!-- Product Details -->
                 <div class="col-md-6">
                     <h1 class="display-5 fw-bolder text-primary">{{ $product['p_name'] }}</h1>
-                    
+
                     <p class="text-muted">Danh mục: <span class="fw-semibold">{{ $product['c_name'] }}</span></p>
 
                     <div class="mb-3">
@@ -39,48 +38,43 @@
                     </div>
 
                     {{-- Danh sách biến thể --}}
+                    {{-- Danh sách biến thể kèm form --}}
                     @if (!empty($variants))
-                        <div class="mb-4">
-                            <h5 class="text-secondary">Các biến thể:</h5>
-                            <table class="table table-bordered">
-                                <thead class="table-light">
-                                    <tr>
-                                        <th>Màu</th>
-                                        <th>Size</th>
-                                        <th>Tồn kho</th>
-                                        <th>Giá</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                        <form action="/add-to-cart" method="POST">
+                            <input type="hidden" name="product_id" value="{{ $product['id'] }}">
+                            @csrf
+
+                            <div class="mb-4">
+                                <h5 class="text-secondary">Chọn phiên bản:</h5>
+                                <select class="form-select" name="variant_id" required>
+                                    <option value="">-- Chọn màu / size --</option>
                                     @foreach ($variants as $v)
-                                        <tr>
-                                            <td>{{ $v['color_name'] }}</td>
-                                            <td>{{ $v['size_name'] }}</td>
-                                            <td>{{ $v['stock'] }}</td>
-                                            <td>{{ number_format($v['price'], 0, ',', '.') }} ₫</td>
-                                        </tr>
+                                        <option value="{{ $v['id'] }}">
+                                            {{ $v['color_name'] }} - {{ $v['size_name'] }} (Còn: {{ $v['stock'] }}) -
+                                            {{ number_format($v['price'], 0, ',', '.') }} ₫
+                                        </option>
                                     @endforeach
-                                </tbody>
-                            </table>
-                        </div>
+                                </select>
+                            </div>
+
+                            <div class="d-flex gap-3">
+                                <input class="form-control text-center border" name="quantity" type="number" value="1"
+                                    min="1" style="max-width: 4rem">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fas fa-cart-plus me-2"></i> Thêm vào giỏ hàng
+                                </button>
+                            </div>
+                        </form>
                     @endif
 
-                    <div class="d-flex gap-3">
-                        <input class="form-control text-center border" type="number" value="1" min="1" style="max-width: 4rem">
-                        <button class="btn btn-primary">
-                            <i class="fas fa-cart-plus me-2"></i> Thêm vào giỏ hàng
-                        </button>
+
+                    <!-- Product Description -->
+                    <div class="row mt-5">
+                        <div class="col-lg-12">
+                            <h3 class="fw-bold text-dark">Mô tả sản phẩm</h3>
+                            <p class="text-muted">{{ $product['p_content'] }}</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Product Description -->
-            <div class="row mt-5">
-                <div class="col-lg-12">
-                    <h3 class="fw-bold text-dark">Mô tả sản phẩm</h3>
-                    <p class="text-muted">{{ $product['p_content'] }}</p>
-                </div>
-            </div>
-        </div>
     </section>
 @endsection
