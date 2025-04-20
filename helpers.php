@@ -118,4 +118,13 @@ if (!function_exists('slug')) {
             return $randomString;
         }
     }
+    if (!function_exists('session')) {
+        function session($key = null, $default = null) {
+            if ($key) {
+                return isset($_SESSION[$key]) ? $_SESSION[$key] : $default;
+            }
+            return $_SESSION;
+        }
+    }
+    
 }

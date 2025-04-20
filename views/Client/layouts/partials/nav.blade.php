@@ -21,6 +21,9 @@
                         <li><a class="dropdown-item" href="#!">New Arrivals</a></li>
                     </ul>
                 </li> --}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/orders">Đơn hàng của tôi</a>
+                  </li>
             </ul>
             
             <form class="d-flex" action="/cart">
